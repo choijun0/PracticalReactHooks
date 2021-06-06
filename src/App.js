@@ -1,31 +1,39 @@
-import "./styles.css";
 import React, { useState } from "react";
 import ReactDom from "react-dom";
 
-const useIput = (initialValue, validator) => {
-  const [value, setValue] = useState(initialValue);
-  const onChange = (event) => {
-    const {
-      target: { value }
-    } = event;
-    let willUpdate = true;
-    if (typeof validator === "function") {
-      willUpdate = validator(value);
-    }
-    if (willUpdate) {
-      setValue(value);
-    }
+const content = [
+  {
+    tab: "Section 1",
+    content: "I'm the content of Section 1"
+  },
+  {
+    tab: "Section 2",
+    content: "I'm the content of Section 2"
+  }
+];
+
+const useTabs = (initialTab, allTabs) => {
+  if (!allTabs || !Array.isArray(allTabs)) {
+    return;
+  }
+  const [currentIndex, setCurrentIndex] = useState(initialTab);
+  return {
+    currentItem: allTabs[currentIndex],
+    changeItem: setCurrentIndex
   };
-  return { value, onChange };
 };
 
 const App = () => {
-  const maxlen = (inputString) => inputString.length <= 10;
-  const name = useIput("Mr.", maxlen);
+  const { currentItem, changeItem } = useTabs(0, content);
+  //currentItem은 closere로 changeItem에 의해 index가 바뀌면 그 값도 바뀐다.
+  //map function's index is element handed automatically from callback function.
+  //arr.map(callback(currentValue[, index[, array]])[, thisArg])
   return (
     <div>
-      <h1>Hello</h1>
-      <input placeholder="Name" value={name.value} onChange={name.onChange} />
+      {content.map((section, index, array) => (
+        <button onClick={() => changeItem(index)}>{section.tab}</button>
+      ))}
+      <div>{currentItem.content}</div>
     </div>
   );
 };
