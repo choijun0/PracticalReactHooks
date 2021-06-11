@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 
-import App from "./useFullScreen";
+import App from "./useNotification";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
