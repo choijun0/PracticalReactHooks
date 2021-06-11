@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 
-import App from "./useScroll";
+import App from "./useFullScreen";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
