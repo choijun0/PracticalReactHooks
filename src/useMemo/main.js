@@ -1,20 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import ReactDom from "react-dom";
 import Info from "./info";
 
 const App = () => {
   let [color, setColor] = useState("");
   let [movie, setMovie] = useState(0);
-  const actSetColor = (e) => {
-    setColor(e.target.value);
-  };
-  const actSetMovie = (e) => {
-    setMovie(e.target.value);
-  };
+  //useCallback 을 사용해 의미없는 재선언을 막음
+  const onChangeHandler = useCallback((e) => {
+    if (e.target.id === "color") setColor(e.target.value);
+    else setMovie(e.target.value);
+  }, []);
   return (
     <div>
-      <input placeholder="color" onChange={actSetColor} />
-      <input placeholder="movie number" onChange={actSetMovie} />
+      <input id="color" placeholder="color" onChange={onChangeHandler} />
+      <input id="movie" placeholder="movie number" onChange={onChangeHandler} />
       <Info color={color} movie={movie} />
     </div>
   );
