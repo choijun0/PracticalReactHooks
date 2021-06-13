@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 
-import App from "./useAxios";
+import App from "./useMemo/main";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
