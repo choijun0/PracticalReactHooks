@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 
-import App from "./useMemo/main";
+import App from "./useLayoutEffect";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
